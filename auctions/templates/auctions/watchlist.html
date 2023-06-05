@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2> Watchlist </h2>
+    {% if watchlist %}
+        {% for product in watchlist %}
+        <div class="m-4">
+            <p> <a href="{% url 'listing' product.id %}"> {{ product.item }}</a> </p>
+            <image src="{{ product.image }}" alt="Image of {{ product.item }}" width="200" height="200" href="{% url 'listing' product.id %}">
+            <p> {{ product.description }}</p>
+            <p> Category: {{ product.category }}</p>
+            <p> Current Bid: {{ product.bid }}</p>
+            <p> Posted by {{ product.seller }} on {{ product.posted_on }}</p>
+            <a href="{% url 'watchlist' product.id %}" class="btn btn-warning"> Remove from watchlist</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>There are no active listings at this time.</p>
+    {% endif %}
+
+{% endblock %}
