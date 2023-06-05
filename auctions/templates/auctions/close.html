@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<h1>Congratulations! You have successfully closed the listing for {{ sold.item }}.</h1>
+<div>
+    <image src="{{ sold.image }}" alt="Image of {{ sold.item }}" width="200" height="200">
+    <p> Product: {{ sold.item }}</p>
+    <p> Description: {{ sold.description }}</p>
+    <p> Category: {{ sold.category }}</p>
+    <p> Selling Price: {{ sold.bid }}</p>
+    <p> Buyer: {{ buyer }}</p>
+</div>
+<h3> Thank you for choosing our site</h3>
+
+
+{% endblock %}

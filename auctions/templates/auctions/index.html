@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    {% if available_items %}
+
+        {% for product in available_items %}
+        {% if product.active %}
+        <div class="m-4">
+            <image src="{{ product.image }}" alt="Image of {{ product.item }}" width="200" height="200" href="{% url 'listing' product.id %}">
+            <p> PKR: {{ product.bid }}</p>
+            <p> {{ product.item }}</p>
+            <p> {{ product.description }}</p>
+            <p> Posted by {{ product.seller }} on {{ product.posted_on }}</p>
+            <div class = "mt-4">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'listing' product.id %}" class="btn btn-primary">Visit</a>
+                    <a href="{% url 'categories' 0 %}" class="btn btn-info"> {{ product.category }}</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Log in to make an offer</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    {% if not active %}
+        <p>There are no active listings at this time.</p>
+    {% endif %}
+
+    {% endif %}
+{% endblock %}
